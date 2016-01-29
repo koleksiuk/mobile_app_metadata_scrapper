@@ -1,7 +1,11 @@
 class WebsiteScrapper
   class Fetcher
+    NullResponse = Struct.new(:body)
+
     def fetch(website_url)
       client(website_url).get
+    rescue Faraday::ConnectionFailed
+      NullResponse.new
     end
 
     private
