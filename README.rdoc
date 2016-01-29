@@ -1,5 +1,8 @@
 == README
 
+I could go with background website scrapping, but it wasn't mentioned in readme to do so (easy to do, worse to integrate with page =)).
+Page scrapping limited to 3 pages max.
+
 * Ruby version
 2.2.0+
 
@@ -14,3 +17,4 @@ Postgres - just because I have this as default and didn't want to run rails new 
 * How to run
 
 `bin/rails s`
+
