@@ -15,7 +15,7 @@ class WebsiteScrapper
 
   def fetch
     Result.new(
-      url: website_url,
+      url: website_url.to_s,
       data: fetch_result
     )
   end
