@@ -1,0 +1,16 @@
+<% results.each do |res| %>
+  <h4>URL: <%= link_to res.url %></h4>
+  <% res.data.each do |app| %>
+      <dl class="dl-horizontal">
+        <dt>Type</dt>
+        <dd><%= app.app_type %></dd>
+        <dt>Name</dt>
+        <dd><%= app.name %></dd>
+        <dt>Url</dt>
+        <dd><%= app.url %></dd>
+        <dt>App Store ID</dt>
+        <dd><%= app.store_id %></dd>
+      </dl>
+      </dl>
+  <% end %>
+<% end %>

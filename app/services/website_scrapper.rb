@@ -1,4 +1,8 @@
 class WebsiteScrapper
+  def self.to_proc
+    ->(url) { fetch(url) }
+  end
+
   def self.fetch(website_url)
     new(website_url: website_url).fetch
   end
@@ -10,14 +14,21 @@ class WebsiteScrapper
   end
 
   def fetch
-    stores.map do |store|
-      store.get_app_details(page_header)
-    end.select(&:present?)
+    Result.new(
+      url: website_url,
+      data: fetch_result
+    )
   end
 
   private
 
   attr_reader :website_url
+
+  def fetch_result
+    stores.map do |store|
+      store.get_app_details(page_header)
+    end
+  end
 
   def page_header
     @page_header ||= html_structure.xpath("//head")

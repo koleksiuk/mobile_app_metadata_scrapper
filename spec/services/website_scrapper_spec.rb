@@ -48,17 +48,21 @@ RSpec.describe WebsiteScrapper do
       it "scraps data successfully" do
         VCR.use_cassette("pinterest") do
           aggregate_failures do
-            expect(result.count).to eq(2)
+            expect(result.url).to eq(url)
 
-            expect(result[0].app_type).to eq(:android)
-            expect(result[0].name).to eq("Pinterest")
-            expect(result[0].store_id).to eq("com.pinterest")
-            expect(result[0].url).to eq("pinterest://pin/349380883571292829")
+            data = result.data
 
-            expect(result[1].app_type).to eq(:ios)
-            expect(result[1].name).to eq("Pinterest")
-            expect(result[1].store_id).to eq("429047995")
-            expect(result[1].url).to eq("pinterest://pin/349380883571292829")
+            expect(data.count).to eq(2)
+
+            expect(data[0].app_type).to eq(:android)
+            expect(data[0].name).to eq("Pinterest")
+            expect(data[0].store_id).to eq("com.pinterest")
+            expect(data[0].url).to eq("pinterest://pin/349380883571292829")
+
+            expect(data[1].app_type).to eq(:ios)
+            expect(data[1].name).to eq("Pinterest")
+            expect(data[1].store_id).to eq("429047995")
+            expect(data[1].url).to eq("pinterest://pin/349380883571292829")
           end
         end
       end
@@ -67,15 +71,26 @@ RSpec.describe WebsiteScrapper do
     describe "goodreads" do
       let(:url) { "https://www.goodreads.com/book/show/3273.Moloka_i" }
 
-      it "returns only present data" do
+    subject(:result) { scrapper.fetch }
+
+      it "returns all platforms even if it didn't get fetch" do
         VCR.use_cassette("goodreads") do
           aggregate_failures do
-            expect(result.count).to eq(1)
+            expect(result.url).to eq(url)
 
-            expect(result[0].app_type).to eq(:ios)
-            expect(result[0].name).to eq("Goodreads")
-            expect(result[0].store_id).to eq("355833469")
-            expect(result[0].url).to eq("com.goodreads.https://book/show/3273")
+            data = result.data
+
+            expect(data.count).to eq(2)
+
+            expect(data[0].app_type).to eq(:android)
+            expect(data[0].name).to eq(nil)
+            expect(data[0].store_id).to eq(nil)
+            expect(data[0].url).to eq(nil)
+
+            expect(data[1].app_type).to eq(:ios)
+            expect(data[1].name).to eq("Goodreads")
+            expect(data[1].store_id).to eq("355833469")
+            expect(data[1].url).to eq("com.goodreads.https://book/show/3273")
           end
         end
       end

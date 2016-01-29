@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        <li role="presentation" class="active"><a href=<%= root_path %>>Home</a></li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">WebsiteScrapper</h3>
+  </div>
+
+  <p class="bg-danger"><%= render 'errors' if errors.present? %></p>
+  <div class="jumbotron">
+    <h1>Fetch websites:</h1>
+    <%= render "form" %>
+  </div>
+
+  <div class="row marketing">
+    <%= render 'results', locals: { results: results } %>
+  </div>
+
+  <footer class="footer">
+    <p>With love by<%= Date.today.year %> Konrad =).</p>
+  </footer>
+</div> <!-- /container -->

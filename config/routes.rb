@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'website_scrapper#index'
+
+  resources :website_scrapper, only: [:create]
+
+  get 'website_scrapper' => redirect('/')
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

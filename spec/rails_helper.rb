@@ -28,7 +28,7 @@ require 'vcr'
 ActiveRecord::Migration.maintain_test_schema!
 
 VCR.configure do |config|
-  config.cassette_library_dir = "vcr_cassettes"
+  config.cassette_library_dir = "#{::Rails.root}/spec/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 end
 
