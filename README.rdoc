@@ -18,3 +18,6 @@ Postgres - just because I have this as default and didn't want to run rails new 
 
 `bin/rails s`
 
+* Screenshot:
+
+http://i66.tinypic.com/i6e00i.png
