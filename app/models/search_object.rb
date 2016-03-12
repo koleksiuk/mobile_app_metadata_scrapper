@@ -1,18 +1,18 @@
 class SearchObject
   def initialize(urls)
     @urls = urls
-  end
+    end
 
-  def to_param
-    ""
-  end
+    def to_param
+      ""
+    end
 
-  def to_key
-    []
-  end
+def to_key
+      []
+    end
 
-  def model_name
-    OpenStruct.new(param_key: :search)
+    def model_name
+      OpenStruct.new(param_key: :search)
   end
 
   def urls
@@ -29,5 +29,9 @@ class SearchObject
     uri if uri.absolute?
   rescue ArgumentError
     nil
+  end
+
+  def x
+  rescue Exception
   end
 end
